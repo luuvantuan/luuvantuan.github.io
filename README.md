@@ -1,7 +1,7 @@
 
 <a href="https://www.facebook.com/luuvantuandotcomLIVE">facebook</a>
 
-<a href="https://www.instagram.com/luuvantuandotcom">Instagram</a>
+<a href="https://www.instagram.com/luuvantuandotcom">instagram</a>
 
 
 <a href="https://www.youtube.com/@luuvantuandotcom">youtube</a>
