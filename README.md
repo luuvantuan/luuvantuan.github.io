@@ -3,6 +3,7 @@
 
 <a href="https://www.instagram.com/luuvantuandotcom">instagram</a>
 
+<a href="https://www.threads.com/@luuvantuandotcom">threads</a>
 
 <a href="https://www.youtube.com/@luuvantuandotcom">youtube</a>
 
@@ -13,7 +14,6 @@
 <a href="https://www.linkedin.com/in/luuvantuan">linkedin</a>
 
 
-<a href="https://www.threads.com/@luuvantuandotcom">threads</a>
 
 
 
