@@ -10,5 +10,10 @@
 
 <a href="https://www.x.com/@luuvantuan_com">x</a>
 
+<a href="https://www.linkedin.com/in/luuvantuan">linkedin</a>
+
+
+
+
 
 
