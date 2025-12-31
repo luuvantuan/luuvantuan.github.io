@@ -13,6 +13,8 @@
 <a href="https://www.linkedin.com/in/luuvantuan">linkedin</a>
 
 
+<a href="https://www.threads.com/@luuvantuandotcom">threads</a>
+
 
 
 
