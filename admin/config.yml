@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: "https://<your-netlify-site>.netlify.app"
+
+collections:
+  - name: "posts"
+    label: "Bài viết"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Tiêu đề", name: "title", widget: "string" }
+      - { label: "Ngày", name: "date", widget: "datetime" }
+      - { label: "Thể loại", name: "categories", widget: "list", required: false }
+      - { label: "Thẻ", name: "tags", widget: "list", required: false }
+      - { label: "Ảnh đại diện", name: "thumbnail", widget: "image", required: false }
+      - { label: "Nội dung", name: "body", widget: "markdown" }
