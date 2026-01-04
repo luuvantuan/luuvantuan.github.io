@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài viết</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main id="post"></main>
+
+<script>
+const file = new URLSearchParams(location.search).get("file");
+
+fetch(file)
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("post").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
 
