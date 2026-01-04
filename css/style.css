@@ -1,1 +1,153 @@
+/* =========================
+   Base
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+  max-width: 720px;
+  margin: auto;
+  padding: 2rem 1.5rem;
+  line-height: 1.75;
+}
+
+/* =========================
+   Typography
+========================= */
+
+h1, h2, h3 {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+p {
+  margin: 0.8rem 0;
+  color: #cbd5f5;
+}
+
+small {
+  color: #94a3b8;
+}
+
+/* =========================
+   Links
+========================= */
+
+a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Header
+========================= */
+
+header {
+  margin-bottom: 3rem;
+}
+
+header p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* =========================
+   Post List (index)
+========================= */
+
+.post {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+.post:hover {
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+.post p {
+  font-size: 0.95rem;
+}
+
+/* =========================
+   Post Page
+========================= */
+
+article h1 {
+  margin-bottom: 1rem;
+}
+
+article p {
+  font-size: 1.05rem;
+}
+
+/* =========================
+   Code (nếu có)
+========================= */
+
+pre {
+  background: #020617;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+code {
+  font-family: monospace;
+  color: #38bdf8;
+}
+
+/* =========================
+   Utilities
+========================= */
+
+button {
+  background: #38bdf8;
+  color: #020617;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 640px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+}
 
