@@ -1,36 +1,41 @@
-const postFiles = [
-  "posts/bai-1.html"
-];
+document.addEventListener("DOMContentLoaded", async () => {
+  const list = document.getElementById("post-list");
+  if (!list) return;
 
-const list = document.getElementById("post-list");
+  const res = await fetch("posts/index.json");
+  const index = await res.json();
 
-postFiles.forEach(file => {
-  fetch(file)
-    .then(res => res.text())
-    .then(html => {
-      const temp = document.createElement("div");
-      temp.innerHTML = html;
+  const posts = [];
 
-      const article = temp.querySelector("article");
+  for (const item of index) {
+    const html = await fetch(`posts/${item.file}`).then(r => r.text());
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
 
-      const title = article.dataset.title;
-      const date = article.dataset.date;
-      const desc = article.dataset.desc;
+    const article = temp.querySelector("article");
 
-      const item = document.createElement("div");
-      item.className = "post";
+    posts.push({
+      file: item.file,
+      date: item.date,
+      title: article.dataset.title,
+      desc: article.dataset.desc
+    });
+  }
 
-      item.innerHTML = `
+  posts
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .forEach(p => {
+      const el = document.createElement("div");
+      el.className = "post";
+      el.innerHTML = `
         <h2>
-          <a href="post.html?file=${file}">
-            ${title}
+          <a href="post.html?file=posts/${p.file}">
+            ${p.title}
           </a>
         </h2>
-        <small>${date}</small>
-        <p>${desc}</p>
+        <small>${p.date}</small>
+        <p>${p.desc}</p>
       `;
-
-      list.appendChild(item);
+      list.appendChild(el);
     });
 });
-
