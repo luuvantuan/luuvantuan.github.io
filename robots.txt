@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://luuvantuan.github.io/sitemap.xml
