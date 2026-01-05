@@ -1,109 +1,83 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+  
+<iframe id="sc-player" width="100%" height="20" scrolling="no" frameborder="no" 
+  allow="autoplay"
+  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zen-wong/proud-of-you&color=%23ff5500&auto_play=true">
+</iframe>
+
+<button id="toggle-sound">🔊 Bật/Tắt nhạc</button>
+
+<script>
+  const btn = document.getElementById('toggle-sound');
+  btn.addEventListener('click', () => {
+    const iframe = document.getElementById('sc-player');
+    // Trick: reload iframe để tắt/bật
+    if (iframe.style.display === "none") {
+      iframe.style.display = "block"; // hiện player để bật nhạc
+      btn.innerText = "🔈 Tắt nhạc";
+    } else {
+      iframe.style.display = "none"; // ẩn player để dừng nhạc
+      btn.innerText = "🔊 Bật nhạc";
+    }
+  });
+</script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lưu Văn Tuấn</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body { font-family: Arial, sans-serif; background:#0f172a; color:#fff; }
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #000);
+      color:#fff;
+    }
     .wrap { max-width:1000px; margin:auto; padding:30px; }
-    h1 { text-align:center; font-size:28px; margin-bottom:10px; }
 
-    /* Avatar với hiệu ứng gradient animation */
-    .avatar { text-align:center; margin:20px 0; }
-    .avatar img {
-      width:180px; height:180px;
-      border-radius:50%;
-      border:5px solid transparent;
-      background-image: linear-gradient(45deg, #ff0080, #00f0ff, #00ff80, #ff0080);
-      background-size: 300% 300%;
-      animation: borderGradient 5s linear infinite;
-      transition: transform 0.5s ease;
-    }
-    .avatar img:hover {
-      transform: scale(1.08) rotate(5deg);
-    }
-    @keyframes borderGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Grid và card */
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; margin-top:20px; }
-    .card {
-      display:flex; align-items:center; gap:12px;
-      padding:14px; background:#111827;
-      border-radius:10px; text-decoration:none; color:#fff;
-      border:2px solid transparent;
-      background-image: linear-gradient(45deg, #ff0080, #00f0ff, #00ff80, #ff0080);
-      background-size: 300% 300%;
-      animation: borderGradient 8s linear infinite;
-      transition:.3s;
-    }
-    .card:hover {
-      transform:translateY(-3px) scale(1.02);
-      box-shadow:0 0 20px #00f0ff;
-    }
-    .icon { font-size:20px; width:36px; text-align:center; }
-    .label { display:flex; flex-direction:column; }
-    .title { font-weight:bold; }
-    .desc { font-size:12px; color:#9ca3af; }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <h1>Lưu Văn Tuấn</h1>
-    <div class="avatar">
-      <img src="https://pbs.twimg.com/profile_images/2002918164850704384/5qI3DGeQ_400x400.jpg" alt="Avatar Lưu Văn Tuấn">
-    </div>
-    <div class="grid">
-      <a class="card" href="https://facebook.com/wWwLuuVanTuanCom" target="_blank"><div class="icon"><i class="fa-brands fa-facebook-f"></i></div><div class="label"><div class="title">Facebook Cá Nhân</div><div class="desc">wWwLuuVanTuanCom</div></div></a>
-      <a class="card" href="https://facebook.com/luuvantuandotcomLIVE" target="_blank"><div class="icon"><i class="fa-regular fa-flag"></i></div><div class="label"><div class="title">Fan Page</div><div class="desc">luuvantuandotcomLIVE</div></div></a>
-      <a class="card" href="https://instagram.com/luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-instagram"></i></div><div class="label"><div class="title">Instagram</div><div class="desc">@luuvantuandotcom</div></div></a>
-      <a class="card" href="https://www.threads.net/@luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-solid fa-at"></i></div><div class="label"><div class="title">Threads</div><div class="desc">@luuvantuandotcom</div></div></a>
-      <a class="card" href="https://x.com/luuvantuan_com" target="_blank"><div class="icon"><i class="fa-brands fa-x-twitter"></i></div><div class="label"><div class="title">X</div><div class="desc">@luuvantuan_com</div></div></a>
-      <a class="card" href="https://linkedin.com/in/luuvantuan" target="_blank"><div class="icon"><i class="fa-brands fa-linkedin-in"></i></div><div class="label"><div class="title">LinkedIn</div><div class="desc">luuvantuan</div></div></a>
-      <a class="card" href="https://tiktok.com/@luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-tiktok"></i></div><div class="label"><div class="title">TikTok</div><div class="desc">@luuvantuandotcom</div></div></a>
-      <a class="card" href="https://youtube.com/@luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-youtube"></i></div><div class="label"><div class="title">YouTube</div><div class="desc">@luuvantuandotcom</div></div></a>
-      <a class="card" href="mailto:luuvantuandotcom@gmail.com" target="_blank"><div class="icon"><i class="fa-regular fa-envelope"></i></div><div class="label"><div class="title">Email</div><div class="desc">luuvantuandotcom@gmail.com</div></div></a>
-      <a class="card" href="https://luuvantuandotcom.tumblr.com" target="_blank"><div class="icon"><i class="fa-brands fa-tumblr"></i></div><div class="label"><div class="title">Tumblr</div><div class="desc">luuvantuandotcom</div></div></a>
-      <a class="card" href="https://pinterest.com/luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-pinterest-p"></i></div><div class="label"><div class="title">Pinterest</div><div class="desc">luuvantuandotcom</div></div></a>
-      <a class="card" href="https://twitch.tv/luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-twitch"></i></div><div class="label"><div class="title">Twitch</div><div class="desc">luuvantuandotcom</div></div></a>
-      <a class="card" href="https://www.snapchat.com/add/luuvantuan" target="_blank"><div class="icon"><i class="fa-brands fa-snapchat-ghost"></i></div><div class="label"><div class="title">Snapchat</div><div class="desc">luuvantuan</div></div></a>
-      <a class="card" href="https://patreon.com/c/u103722389" target="_blank"><div class="icon"><i class="fa-brands fa-patreon"></i></div><div class="label"><div class="title">Patreon</div><div class="desc">u103722389</div></div></a>
-      <a class="card" href="https://t.me/+TOn0D4kPBT06g_2a" target="_blank"><div class="icon"><i class="fa-brands fa-telegram"></i></div><div class="label"><div class="title">Telegram</div><div class="desc">+TOn0D4kPBT06g_2a</div></div></a>
-      <a class="card" href="https://creators.spotify.com/pod/profile/luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-spotify"></i></div><div class="label"><div class="title">Spotify</div><div class="desc">luuvantuandotcom</div></div></a>
-  <!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lưu Văn Tuấn</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    body { font-family: Arial, sans-serif; background:#0f172a; color:#fff; }
-    .wrap { max-width:1000px; margin:auto; padding:30px; }
-    h1 { text-align:center; font-size:28px; margin-bottom:10px; }
-
-    /* Avatar với hiệu ứng hào quang */
+    /* Avatar morph + halo glow */
     .avatar { text-align:center; margin:20px 0; }
     .avatar img {
       width:180px; height:180px;
       border-radius:50%;
       border:4px solid #fff;
-      box-shadow:0 0 25px #ff0080, 0 0 50px #00f0ff, 0 0 75px #00ff80;
-      animation: halo 4s ease-in-out infinite;
-      transition: transform 0.5s ease;
+      animation: halo 4s ease-in-out infinite, morphShape 8s ease-in-out infinite;
+      transition: transform 0.8s ease;
     }
-    .avatar img:hover {
-      transform: scale(1.08) rotate(5deg);
-    }
+    .avatar img:hover { transform: scale(1.1) rotate(10deg); }
     @keyframes halo {
       0% { box-shadow:0 0 20px #ff0080, 0 0 40px #00f0ff; }
       50% { box-shadow:0 0 35px #00ff80, 0 0 70px #ff0080; }
       100% { box-shadow:0 0 20px #00f0ff, 0 0 40px #00ff80; }
+    }
+    @keyframes morphShape {
+      0% { border-radius:50%; }
+      25% { border-radius:40% 60% 50% 70%/50% 40% 60% 50%; }
+      50% { border-radius:20%; }
+      75% { border-radius:60% 40% 70% 50%/40% 60% 50% 70%; }
+      100% { border-radius:50%; }
+    }
+
+    /* Chữ glow */
+    h1 {
+      text-align:center;
+      font-size:32px;
+      margin-top:10px;
+      animation: fadeIn 3s ease forwards, textGlow 4s ease-in-out infinite;
+    }
+
+    h1 {
+  margin-bottom:60px; /* khoảng cách xuống dưới */
+}
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(10px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes textGlow {
+      0% { text-shadow:0 0 10px #ff0080; }
+      50% { text-shadow:0 0 20px #00f0ff; }
+      100% { text-shadow:0 0 10px #00ff80; }
     }
 
     /* Grid và card */
@@ -111,14 +85,14 @@
     .card {
       display:flex; align-items:center; gap:12px;
       padding:14px; background:#111827;
-      border-radius:10px; text-decoration:none; color:#fff;
+      border-radius:20px; text-decoration:none; color:#fff;
       border:2px solid #fff;
       box-shadow:0 0 15px #ff0080;
       transition:.3s;
       animation: haloCard 6s ease-in-out infinite;
     }
     .card:hover {
-      transform:translateY(-3px) scale(1.02);
+      transform:translateY(-3px) scale(1.05);
       box-shadow:0 0 25px #00f0ff, 0 0 50px #ff0080;
     }
     @keyframes haloCard {
@@ -137,31 +111,66 @@
       display:flex;
       justify-content:center;
       gap:20px;
-      margin-top:30px;
+      margin-top:40px;
     }
     .extra .card {
       flex:1;
-      max-width:300px;
+      max-width:500px;
     }
   </style>
 </head>
 <body>
-  
-      <!-- Các mạng xã hội chính -->
-      <!-- ... giữ nguyên các thẻ Facebook, Instagram, Threads, X, LinkedIn, TikTok, YouTube, Email, Tumblr, Pinterest, Twitch, Snapchat, Patreon, Telegram, Spotify ... -->
+  <div class="wrap">
+    <div class="avatar">
+      <img src="https://pbs.twimg.com/profile_images/2002918164850704384/5qI3DGeQ_400x400.jpg" alt="Avatar Lưu Văn Tuấn">
     </div>
-    <div class="extra">
-      <!-- Medium -->
-      <a class="card" href="https://medium.com/@luuvantuan" target="_blank">
-        <div class="icon"><i class="fa-brands fa-medium"></i></div>
-        <div class="label"><div class="title">Medium</div><div class="desc">luuvantuan</div></div>
-      </a>
-      <!-- Substack -->
+    <h1>Lưu Văn Tuấn</h1>
+
+    <div class="grid">
+      <a class="card" href="https://facebook.com/wWwLuuVanTuanCom" target="_blank"><div class="icon"><i class="fa-brands fa-facebook-f"></i></div><div class="label"><div class="title">Facebook Cá Nhân</div><div class="desc">wWwLuuVanTuanCom</div></div></a>
+      <a class="card" href="https://facebook.com/luuvantuandotcomLIVE" target="_blank"><div class="icon"><i class="fa-regular fa-flag"></i></div><div class="label"><div class="title">Fan Page</div><div class="desc">luuvantuandotcomLIVE</div></div></a>
+      <a class="card" href="https://instagram.com/luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-instagram"></i></div><div class="label"><div class="title">Instagram</div><div class="desc">@luuvantuandotcom</div></div></a>
+      <a class="card" href="https://www.threads.net/@luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-solid fa-at"></i></div><div class="label"><div class="title">Threads</div><div class="desc">@luuvantuandotcom</div></div></a>
+      <a class="card" href="https://x.com/luuvantuan_com" target="_blank"><div class="icon"><i class="fa-brands fa-x-twitter"></i></div><div class="label"><div class="title">X</div><div class="desc">@luuvantuan_com</div></div></a>
+      <a class="card" href="https://linkedin.com/in/luuvantuan" target="_blank"><div class="icon"><i class="fa-brands fa-linkedin-in"></i></div><div class="label"><div class="title">LinkedIn</div><div class="desc">luuvantuan</div></div></a>
+      <a class="card" href="https://tiktok.com/@luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-tiktok"></i></div><div class="label"><div class="title">TikTok</div><div class="desc">@luuvantuandotcom</div></div></a>
+      <a class="card" href="https://youtube.com/@luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-youtube"></i></div><div class="label"><div class="title">YouTube</div><div class="desc">@luuvantuandotcom</div></div></a>
+      <a class="card" href="mailto:luuvantuandotcom@gmail.com" target="_blank"><div class="icon"><i class="fa-regular fa-envelope"></i></div><div class="label"><div class="title">Email</div><div class="desc">luuvantuandotcom@gmail.com</div></div></a>
+      <a class="card" href="https://luuvantuandotcom.tumblr.com" target="_blank"><div class="icon"><i class="fa-brands fa-tumblr"></i></div><div class="label"><div class="title">Tumblr</div><div class="desc">luuvantuandotcom</div></div></a>
+      <a class="card" href="https://pinterest.com/luuvantuandotcom" target="_blank"><div class="icon"><i class="fa-brands fa-pinterest-p"></i></div><div class="label"><div class="title">Pinterest</div><div class="desc">luuvantuandotcom</div></div></a>
+     <!-- Substack -->
       <a class="card" href="https://luuvantuandotcom.substack.com" target="_blank">
         <div class="icon"><i class="fa-solid fa-newspaper"></i></div>
         <div class="label"><div class="title">Substack</div><div class="desc">luuvantuandotcom</div></div>
       </a>
+
+      <a class="card" href="https://twitch.tv/luuvantuandotcom" target="_blank">
+      <div class="icon"><i class="fa-brands fa-twitch"></i></div>
+      <div class="label"><div class="title">Twitch</div><div class="desc">luuvantuandotcom</div></div>
+    </a>
+
+     <a class="card" href="https://medium.com/@luuvantuan" target="_blank">
+      <div class="icon"><i class="fa-brands fa-medium"></i></div>
+      <div class="label"><div class="title">Medium</div><div class="desc">luuvantuan</div></div>
+    </a>
+
+
+
+
+
+     
+
+    <a class="card" href="https://github.com/luuvantuan" target="_blank">
+      <div class="icon"><i class="fa-brands fa-github"></i></div>
+      <div class="label"><div class="title">GitHub</div><div class="desc">luuvantuan</div></div>
+    </a>
+
+    <a class="card" href="https://shopee.vn/luuvantuandotcom" target="_blank">
+      <div class="icon"><i class="fa-solid fa-cart-shopping"></i></div>
+      <div class="label"><div class="title">Shopee</div><div class="desc">luuvantuandotcom</div></div>
+    </a>
     </div>
-  </div>
-</body>
-</html>
+
+
+
+
