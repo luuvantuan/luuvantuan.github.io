@@ -62,6 +62,7 @@ collections:
           - Kinh doanh
           - Trở thành bác sĩ Đông y
           - Rèn luyện cơ thể
+          - Nguyên lý
       - label: Bản nháp
         name: draft
         widget: boolean

@@ -14,6 +14,7 @@ export const TOPICS = [
   { name: "Kinh doanh", description: "Bài học từ việc làm ăn, bán hàng, xây dựng thứ của riêng mình." },
   { name: "Trở thành bác sĩ Đông y", description: "Hành trình học và theo đuổi y học cổ truyền." },
   { name: "Rèn luyện cơ thể", description: "Tập luyện, ăn uống, giữ sức khỏe mỗi ngày." },
+  { name: "Nguyên lý", description: "Những nguyên lý sống mình tin và cố gắng sống theo." },
 ] as const;
 
 export type TopicName = (typeof TOPICS)[number]["name"];
