@@ -1,0 +1,21 @@
+---
+import Base from "../layouts/Base.astro";
+import PostList from "../components/PostList.astro";
+import { SITE } from "../site";
+import { getPosts } from "../utils";
+
+const posts = (await getPosts()).slice(0, 8);
+---
+<Base>
+  <section class="intro">
+    <h1>Xin chào, mình là Tuấn.</h1>
+    <p>
+      {SITE.description} Thỉnh thoảng mình cũng làm video trên{" "}
+      <a href={SITE.youtube} target="_blank" rel="noopener">YouTube</a>.
+    </p>
+  </section>
+
+  <h2 class="section-title">Bài viết mới</h2>
+  <PostList posts={posts} />
+  <p class="meta more"><a href="/blog/">Xem tất cả bài viết →</a></p>
+</Base>

@@ -1,0 +1,46 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { getPosts, formatDate, readingTime, slugify, type Post } from "../../utils";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+interface Props { post: Post; newer?: Post; older?: Post }
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const minutes = readingTime(post.body);
+---
+<Base title={post.data.title} description={post.data.description} type="article">
+  <article>
+    <header class="post-header">
+      <p class="meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time> · {minutes} phút đọc
+        {post.data.draft && " · NHÁP"}
+      </p>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="lead">{post.data.description}</p>}
+      {post.data.tags.length > 0 && (
+        <ul class="tags">
+          {post.data.tags.map((t) => <li><a href={`/tag/${slugify(t)}/`}>{t}</a></li>)}
+        </ul>
+      )}
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <footer class="post-footer">
+    <a class="meta" href="/blog/">← Tất cả bài viết</a>
+    <nav class="post-nav" aria-label="Bài trước và bài sau">
+      {older && <a href={`/blog/${older.id}/`}><span>Bài trước</span>{older.data.title}</a>}
+      {newer && <a class="next" href={`/blog/${newer.id}/`}><span>Bài sau</span>{newer.data.title}</a>}
+    </nav>
+  </footer>
+</Base>

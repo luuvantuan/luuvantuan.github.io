@@ -1,0 +1,31 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostList from "../../components/PostList.astro";
+import { getPosts, slugify } from "../../utils";
+
+const posts = await getPosts();
+const years = [...new Set(posts.map((p) => p.data.date.getFullYear()))];
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort((a, b) => a.localeCompare(b, "vi"));
+---
+<Base title="Bài viết" description="Tất cả bài viết trên blog.">
+  <section class="intro">
+    <h1>Bài viết</h1>
+    <p>{posts.length} bài, mới nhất ở trên.</p>
+  </section>
+
+  {tags.length > 0 && (
+    <>
+      <h2 class="section-title">Chủ đề</h2>
+      <ul class="tags">
+        {tags.map((t) => <li><a href={`/tag/${slugify(t)}/`}>{t}</a></li>)}
+      </ul>
+    </>
+  )}
+
+  {years.map((year) => (
+    <>
+      <h2 class="year">{year}</h2>
+      <PostList posts={posts.filter((p) => p.data.date.getFullYear() === year)} />
+    </>
+  ))}
+</Base>

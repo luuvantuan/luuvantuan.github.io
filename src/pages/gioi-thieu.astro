@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../site";
+---
+<Base title="Giới thiệu" description={`Đôi điều về ${SITE.author}.`}>
+  <article>
+    <header class="post-header">
+      <h1>Giới thiệu</h1>
+    </header>
+    <div class="prose">
+      <p>Chào bạn, mình là <strong>{SITE.author}</strong>.</p>
+      <p>
+        <em>(Viết vài dòng về bạn ở đây: bạn sống ở đâu, làm gì, quan tâm điều gì, và vì sao bạn viết blog này.
+        Sửa trong file <code>src/pages/gioi-thieu.astro</code>.)</em>
+      </p>
+      <p>
+        Blog này là nơi mình ghi lại những điều nhỏ trong đời sống hằng ngày: những gì mình đọc,
+        những chuyến đi, những bài học mình nhận ra theo thời gian.
+      </p>
+      <p>
+        Ngoài viết, mình còn làm video trên <a href={SITE.youtube} target="_blank" rel="noopener">kênh YouTube</a>.
+        Nếu muốn nhận bài mới, bạn có thể theo dõi qua <a href="/rss.xml">RSS</a>.
+      </p>
+    </div>
+  </article>
+</Base>
