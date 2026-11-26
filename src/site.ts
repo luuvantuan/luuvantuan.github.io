@@ -4,6 +4,5 @@ export const SITE = {
   description: "Những ghi chép nhỏ về đời sống, công việc và những điều mình đang học.",
   author: "Lưu Văn Tuấn",
   lang: "vi",
-  // Đổi thành đường dẫn kênh YouTube của bạn
-  youtube: "https://www.youtube.com/",
+  youtube: "https://www.youtube.com/@luuvantuandotcom?sub_confirmation=1",
 };
