@@ -63,6 +63,7 @@ collections:
           - Trở thành bác sĩ Đông y
           - Rèn luyện cơ thể
           - Nguyên lý
+          - Tóm tắt sách
       - label: Bản nháp
         name: draft
         widget: boolean
