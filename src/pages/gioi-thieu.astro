@@ -1,26 +1,35 @@
 ---
 import Base from "../layouts/Base.astro";
-import { SITE } from "../site";
+import { SITE, TOPICS } from "../site";
+import { slugify } from "../utils";
 ---
-<Base title="Giới thiệu" description={`Đôi điều về ${SITE.author}.`}>
+<Base title="Giới thiệu" description={`Đôi điều về ${SITE.author} và blog này.`}>
   <article>
     <header class="post-header">
-      <h1>Giới thiệu</h1>
+      <h1>Chào bạn, đây là blog của mình</h1>
+      <p class="lead">Vì sao mình bắt đầu viết, và bạn có thể đọc gì ở đây.</p>
     </header>
     <div class="prose">
-      <p>Chào bạn, mình là <strong>{SITE.author}</strong>.</p>
+      <p>Mình là <strong>{SITE.author}</strong>.</p>
       <p>
-        <em>(Viết vài dòng về bạn ở đây: bạn sống ở đâu, làm gì, quan tâm điều gì, và vì sao bạn viết blog này.
-        Sửa trong file <code>src/pages/gioi-thieu.astro</code>.)</em>
+        Lâu nay mình chủ yếu làm video. Nhưng có những điều không hợp để nói trước camera: một suy nghĩ
+        chợt đến lúc đi bộ buổi tối, một cuốn sách đọc dở, một ngày bình thường mà mình muốn nhớ lâu hơn.
       </p>
-      <p>
-        Blog này là nơi mình ghi lại những điều nhỏ trong đời sống hằng ngày: những gì mình đọc,
-        những chuyến đi, những bài học mình nhận ra theo thời gian.
-      </p>
+      <p>Blog này là chỗ cho những điều đó.</p>
+
+      <h2>Bạn sẽ đọc được gì ở đây</h2>
+      <ul>
+        {TOPICS.map((t) => (
+          <li><a href={`/tag/${slugify(t.name)}/`}>{t.name}</a>: {t.description}</li>
+        ))}
+      </ul>
+
+      <p>Mình không hứa sẽ viết đều. Nhưng mỗi bài ở đây đều là điều mình thật sự nghĩ.</p>
       <p>
         Ngoài viết, mình còn làm video trên <a href={SITE.youtube} target="_blank" rel="noopener">kênh YouTube</a>.
         Nếu muốn nhận bài mới, bạn có thể theo dõi qua <a href="/rss.xml">RSS</a>.
       </p>
+      <p>Cảm ơn bạn đã ghé qua.</p>
     </div>
   </article>
 </Base>

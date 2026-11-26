@@ -1,0 +1,21 @@
+---
+import { TOPICS } from "../site";
+import { slugify, type Post } from "../utils";
+
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+const count = (name: string) => posts.filter((p) => (p.data.tags as string[]).includes(name)).length;
+---
+<ul class="post-list">
+  {TOPICS.map((t) => (
+    <li>
+      <a href={`/tag/${slugify(t.name)}/`}>
+        <div class="tag-row">
+          <h2>{t.name}</h2>
+          <span class="meta">{count(t.name) > 0 ? `${count(t.name)} bài` : "Sắp có bài"}</span>
+        </div>
+        <p>{t.description}</p>
+      </a>
+    </li>
+  ))}
+</ul>

@@ -24,7 +24,7 @@ Mỗi bài là một file `.md` trong `src/content/blog/`. Tên file là đườ
 title: "Tiêu đề bài"
 description: "Một câu tóm tắt, hiện ở danh sách bài và trên Google"
 date: 2026-11-26
-tags: ["Đời sống", "Đọc sách"]
+tags: ["Kinh doanh"]
 draft: true   # xóa dòng này để đăng bài
 ---
 ```
@@ -44,16 +44,15 @@ Có nhiều ảnh cho một bài thì tạo thư mục con: `public/images/di-da
 
 ## Chủ đề (tag)
 
-Ghi trong dòng `tags:` của mỗi bài, ví dụ `tags: ["Đời sống", "Du lịch"]`. Chủ đề mới tự xuất hiện ở trang `/tag/` khi có bài dùng nó.
-Gợi ý bộ chủ đề (viết đúng chính tả, hoa thường để không bị tách thành 2 chủ đề):
+Blog có 4 chủ đề cố định, khai báo trong `src/site.ts` (mục `TOPICS`):
 
-- **Đời sống**: chuyện hằng ngày
-- **Suy ngẫm**: suy nghĩ, bài học
-- **Đọc sách**: sách đang đọc, ghi chú sách
-- **Du lịch**: những chuyến đi
-- **Gia đình**
-- **Công việc**
-- **Hậu trường**: chuyện đằng sau các video YouTube
+- Học ngoại ngữ
+- Kinh doanh
+- Trở thành bác sĩ Đông y
+- Rèn luyện cơ thể
+
+Gắn vào bài bằng dòng `tags:`, ví dụ `tags: ["Kinh doanh", "Học ngoại ngữ"]`. Phải viết **đúng y hệt** tên trên (cả dấu và chữ hoa), sai là build báo lỗi.
+Muốn thêm, đổi tên hoặc sửa mô tả chủ đề: sửa `TOPICS` trong `src/site.ts`.
 
 ## Sửa thông tin chung
 

@@ -74,7 +74,7 @@ main { padding: 2rem 0 4rem; }
 .post-list p { margin: 0.25rem 0 0; color: var(--muted); font-size: 1rem; }
 .meta { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
 .empty { color: var(--muted); }
-.post-list a.tag-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.tag-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
 .more { margin-top: 1.25rem; }
 
 .year { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); margin: 2.5rem 0 0.5rem; font-weight: 500; }

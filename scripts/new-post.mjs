@@ -30,7 +30,7 @@ writeFileSync(
 title: ${JSON.stringify(title)}
 description: ""
 date: ${today}
-tags: ["Đời sống"]   # gợi ý: Suy ngẫm, Đọc sách, Du lịch, Gia đình, Công việc, Hậu trường
+tags: []   # chọn trong: "Học ngoại ngữ", "Kinh doanh", "Trở thành bác sĩ Đông y", "Rèn luyện cơ thể"
 draft: true
 ---
 
