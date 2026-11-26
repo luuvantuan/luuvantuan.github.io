@@ -11,7 +11,10 @@ const { posts } = Astro.props;
     {posts.map((post) => (
       <li>
         <a href={`/blog/${post.id}/`}>
-          <time class="meta" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          <span class="meta">
+            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            {post.data.tags.length > 0 && <> · {post.data.tags.join(", ")}</>}
+          </span>
           <h2>{post.data.title}</h2>
           {post.data.description && <p>{post.data.description}</p>}
         </a>

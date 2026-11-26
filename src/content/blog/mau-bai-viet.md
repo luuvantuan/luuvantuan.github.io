@@ -32,6 +32,16 @@ Bỏ ảnh vào thư mục `public/images/`, rồi viết:
 ![Mô tả ảnh](/images/ten-anh.jpg)
 ```
 
+## Chèn video ngắn (file mp4)
+
+Bỏ video vào thư mục `public/videos/` (mỗi file dưới 50MB), rồi viết:
+
+```html
+<video src="/videos/ten-video.mp4" controls playsinline></video>
+```
+
+Video dài thì nên đăng lên YouTube rồi chèn như mục dưới, web sẽ nhẹ và nhanh hơn.
+
 ## Chèn video YouTube
 
 Dán đoạn này, thay `VIDEO_ID` bằng mã video (phần sau `v=` trong link YouTube):

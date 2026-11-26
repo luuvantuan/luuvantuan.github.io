@@ -49,6 +49,7 @@ const current = (href: string) => (path.startsWith(href) ? "page" : undefined);
         <a class="brand" href="/">{SITE.title}</a>
         <nav class="nav" aria-label="Điều hướng chính">
           <a href="/blog/" aria-current={current("/blog")}>Bài viết</a>
+          <a href="/tag/" aria-current={current("/tag")}>Chủ đề</a>
           <a href="/gioi-thieu/" aria-current={current("/gioi-thieu")}>Giới thiệu</a>
           <a href={SITE.youtube} target="_blank" rel="noopener">YouTube</a>
           <button class="theme-toggle" type="button" aria-label="Đổi giao diện sáng / tối">
