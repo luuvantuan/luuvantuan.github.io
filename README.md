@@ -44,6 +44,11 @@ Vào **https://luuvantuan.com/admin/** để viết, sửa, xóa bài và tải 
 5. Bấm Generate token, copy token.
 6. Ở trang /admin/, chọn **Sign In with Token** và dán token vào.
 
+**Chèn video:** trong ô Nội dung, bấm nút **+** (hoặc thanh công cụ) và chọn:
+
+- **Video (tải lên)**: chọn file mp4 trên máy (dưới 50MB). File được lưu vào `public/videos/`. Video quay bằng iPhone (.mov) cần đổi sang mp4 trước.
+- **YouTube**: dán link video. Dùng cách này cho video dài hoặc file lớn, web sẽ nhẹ hơn.
+
 Không chia sẻ token cho ai. Lỡ lộ thì vào trang token trên GitHub, bấm xóa (Delete) rồi tạo cái mới.
 
 **Thử trên máy (không cần token):** chạy `npm run dev`, mở http://localhost:4321/admin/ bằng Chrome hoặc Edge, chọn **Work with Local Repository** rồi chọn thư mục `luuvantuan-blog`. Cách này chỉ sửa file trên máy, muốn đăng thì vẫn phải commit và push.

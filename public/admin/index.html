@@ -9,6 +9,60 @@
   </head>
   <body>
     <!-- Sveltia CMS: trang quản trị bài viết. Cấu hình nằm ở admin/config.yml -->
+    <script>
+      // Khởi động thủ công để đăng ký nút "Video" và "YouTube" trước khi trang quản trị chạy.
+      window.CMS_MANUAL_INIT = true;
+    </script>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script>
+      const MB = 1024 * 1024;
+      const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+
+      // Nút "Video": tải file mp4 từ máy lên public/videos/ rồi chèn vào bài.
+      // Ra đúng dạng blog đang dùng: <video src="/videos/ten.mp4" controls playsinline></video>
+      CMS.registerEditorComponent({
+        id: "video",
+        label: "Video (tải lên)",
+        icon: "videocam",
+        fields: [
+          {
+            name: "src",
+            label: "File video (mp4, dưới 50MB)",
+            widget: "file",
+            media_folder: "/public/videos",
+            public_folder: "/videos",
+            accept: "video/mp4,video/webm",
+            max_file_size: 50 * MB,
+            choose_url: false,
+          },
+        ],
+        pattern: /^<video src="([^"]+)" controls playsinline><\/video>$/,
+        fromBlock: (match) => ({ src: match[1] }),
+        toBlock: ({ src }) => `<video src="${esc(src)}" controls playsinline></video>`,
+        toPreview: ({ src }) => `<video src="${esc(src)}" controls playsinline style="max-width:100%"></video>`,
+      });
+
+      // Nút "YouTube": dán link YouTube (video dài, file lớn), web sẽ nhẹ hơn.
+      const youtubeId = (input) => {
+        const s = String(input ?? "").trim();
+        const m = s.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
+        if (m) return m[1];
+        return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : "";
+      };
+      CMS.registerEditorComponent({
+        id: "youtube",
+        label: "YouTube",
+        icon: "smart_display",
+        fields: [{ name: "url", label: "Link YouTube", widget: "string", hint: "Dán link video, ví dụ https://youtu.be/abc123xyz00" }],
+        pattern: /^<iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})" title="Video" allowfullscreen><\/iframe>$/,
+        fromBlock: (match) => ({ url: `https://youtu.be/${match[1]}` }),
+        toBlock: ({ url }) =>
+          `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(url)}" title="Video" allowfullscreen></iframe>`,
+        toPreview: ({ url }) =>
+          `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(url)}" style="width:100%;aspect-ratio:16/9;border:0" allowfullscreen></iframe>`,
+      });
+
+      CMS.init();
+    </script>
   </body>
 </html>
