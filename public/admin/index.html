@@ -13,7 +13,8 @@
       // Khởi động thủ công để đăng ký nút "Video" và "YouTube" trước khi trang quản trị chạy.
       window.CMS_MANUAL_INIT = true;
     </script>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <!-- Cố định phiên bản để trang quản trị không tự đổi khi Sveltia ra bản mới. Muốn nâng cấp: đổi số phiên bản rồi thử lại. -->
+    <script src="https://unpkg.com/@sveltia/cms@5.0.2/dist/sveltia-cms.js"></script>
     <script>
       const MB = 1024 * 1024;
       const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -22,12 +23,13 @@
       // Ra đúng dạng blog đang dùng: <video src="/videos/ten.mp4" controls playsinline></video>
       CMS.registerEditorComponent({
         id: "video",
-        label: "Video (tải lên)",
+        label: "Video nhỏ (tải lên, dưới 50MB)",
         icon: "videocam",
         fields: [
           {
             name: "src",
             label: "File video (mp4, dưới 50MB)",
+            hint: "Video lớn hơn 50MB: đăng lên YouTube (có thể để chế độ Không công khai) rồi dùng nút YouTube.",
             widget: "file",
             media_folder: "/public/videos",
             public_folder: "/videos",
@@ -49,17 +51,27 @@
         if (m) return m[1];
         return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : "";
       };
+      // Video thường (ngang 16:9) và Shorts (dọc 9:16) được chèn hơi khác nhau.
+      const isShort = (input) => /\/shorts\//.test(String(input ?? ""));
+      const ytIframe = (id, short) =>
+        `<iframe${short ? ' class="short"' : ""} src="https://www.youtube-nocookie.com/embed/${id}" title="Video" allowfullscreen></iframe>`;
       CMS.registerEditorComponent({
         id: "youtube",
         label: "YouTube",
         icon: "smart_display",
-        fields: [{ name: "url", label: "Link YouTube", widget: "string", hint: "Dán link video, ví dụ https://youtu.be/abc123xyz00" }],
-        pattern: /^<iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})" title="Video" allowfullscreen><\/iframe>$/,
-        fromBlock: (match) => ({ url: `https://youtu.be/${match[1]}` }),
-        toBlock: ({ url }) =>
-          `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(url)}" title="Video" allowfullscreen></iframe>`,
+        fields: [
+          {
+            name: "url",
+            label: "Link YouTube",
+            widget: "string",
+            hint: "Dán link video hoặc Shorts, ví dụ https://youtu.be/abc123xyz00. Không giới hạn dung lượng: đăng video lên YouTube trước (có thể để Không công khai), rồi dán link vào đây.",
+          },
+        ],
+        pattern: /^<iframe( class="short")? src="https:\/\/www\.youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})" title="Video" allowfullscreen><\/iframe>$/,
+        fromBlock: (match) => ({ url: match[1] ? `https://youtube.com/shorts/${match[2]}` : `https://youtu.be/${match[2]}` }),
+        toBlock: ({ url }) => ytIframe(youtubeId(url), isShort(url)),
         toPreview: ({ url }) =>
-          `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(url)}" style="width:100%;aspect-ratio:16/9;border:0" allowfullscreen></iframe>`,
+          `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(url)}" style="width:100%;${isShort(url) ? "max-width:360px;aspect-ratio:9/16" : "aspect-ratio:16/9"};border:0" allowfullscreen></iframe>`,
       });
 
       CMS.init();
