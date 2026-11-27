@@ -3,6 +3,7 @@ title: "Tóm tắt sách: Quy luật của muôn đời"
 description: "Hai tháng nằm viện của nhà văn Batsana, và câu trả lời của Nodar Dumbadze cho câu hỏi con người sống để làm gì: tâm hồn quá nặng để một người mang, nên phải giúp nhau mang."
 date: 2026-11-27
 tags: ["Tóm tắt sách"]
+draft: true
 ---
 
 **Sách:** *Quy luật của muôn đời*, Nodar Dumbadze. Bản dịch của Phạm Mạnh Hùng, NXB Cầu Vồng, 1987.

@@ -3,6 +3,7 @@ title: "16 nguyên lý của cuộc sống"
 description: "Những điều mình rút ra sau nhiều lần vấp ngã: về cái giá phải trả, thói quen, nỗi đau, sự chú ý, và cái tinh thần biết đủ, mềm mà bền của Đạo."
 date: 2026-11-26
 tags: ["Nguyên lý"]
+draft: true
 ---
 
 Có những điều mình không học được từ sách, mà học từ những lần vấp ngã. Đọc thì thấy đúng, gật gù, rồi quên. Phải tự trả giá, tự đau một lần, nó mới thật sự ở lại.

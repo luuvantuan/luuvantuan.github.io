@@ -3,6 +3,7 @@ title: "Tập gym cho người mới (phần 2): Kỹ thuật đúng cho 8 bài 
 description: "Hướng dẫn từng bước squat, đẩy ngực, kéo cáp, plank, Romanian deadlift, đẩy vai, kéo xà máy và lunge, kèm lỗi hay gặp và cách sửa."
 date: 2026-11-26
 tags: ["Rèn luyện cơ thể"]
+draft: true
 ---
 
 Ở [phần 1](/blog/huong-dan-tap-gym-cho-nguoi-moi/), mình đã đưa ra lịch tập toàn thân 3 buổi/tuần với hai giáo án A và B. Phần này đi vào chi tiết: **làm từng bài tập như thế nào cho đúng**.

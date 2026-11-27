@@ -3,6 +3,7 @@ title: "Hướng dẫn tập gym cho người mới bắt đầu"
 description: "Lịch tập 3 buổi/tuần, 6 bài cơ bản, cách tăng mức tạ, ăn uống và nghỉ ngơi để 3 tháng đầu tập đúng, an toàn và thấy kết quả."
 date: 2026-11-26
 tags: ["Rèn luyện cơ thể"]
+draft: true
 ---
 
 Lần đầu bước vào phòng gym, ai cũng dễ bị ngợp: máy móc chằng chịt, người tập thì có vẻ ai cũng biết mình đang làm gì. Tin tốt là người mới **không cần biết nhiều**. Chỉ cần vài bài cơ bản, một lịch tập đều đặn và chút kiên nhẫn là đủ để thay đổi rõ rệt trong 3 tháng đầu.
