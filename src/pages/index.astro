@@ -10,7 +10,8 @@ const posts = all.slice(0, 8);
 ---
 <Base>
   <section class="intro">
-    <h1>Xin chào, mình là Tuấn.</h1>
+    {/* Tiêu đề ẩn: không hiện trên trang nhưng Google và trình đọc màn hình vẫn đọc được */}
+    <h1 class="sr-only">{SITE.title}</h1>
     <p>
       {SITE.description} Thỉnh thoảng mình cũng làm video trên{" "}
       <a href={SITE.youtube} target="_blank" rel="noopener">YouTube</a>.
