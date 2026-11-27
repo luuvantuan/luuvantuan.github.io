@@ -52,9 +52,12 @@
         return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : "";
       };
       // Video thường (ngang 16:9) và Shorts (dọc 9:16) được chèn hơi khác nhau.
+      // referrerpolicy + allow: YouTube cần các thuộc tính này, thiếu sẽ báo "Lỗi 153 / lỗi phát video".
       const isShort = (input) => /\/shorts\//.test(String(input ?? ""));
+      const YT_ATTRS =
+        'title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen';
       const ytIframe = (id, short) =>
-        `<iframe${short ? ' class="short"' : ""} src="https://www.youtube-nocookie.com/embed/${id}" title="Video" allowfullscreen></iframe>`;
+        `<iframe${short ? ' class="short"' : ""} src="https://www.youtube-nocookie.com/embed/${id}" ${YT_ATTRS}></iframe>`;
       CMS.registerEditorComponent({
         id: "youtube",
         label: "YouTube",
@@ -64,14 +67,20 @@
             name: "url",
             label: "Link YouTube",
             widget: "string",
-            hint: "Dán link video hoặc Shorts, ví dụ https://youtu.be/abc123xyz00. Không giới hạn dung lượng: đăng video lên YouTube trước (có thể để Không công khai), rồi dán link vào đây.",
+            hint: "Dán link video hoặc Shorts, ví dụ https://youtu.be/abc123xyz00. Không giới hạn dung lượng: đăng video lên YouTube trước (để Công khai hoặc Không công khai, KHÔNG để Riêng tư), rồi dán link vào đây.",
           },
         ],
-        pattern: /^<iframe( class="short")? src="https:\/\/www\.youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})" title="Video" allowfullscreen><\/iframe>$/,
+        // Nhận cả dạng cũ (chỉ có title + allowfullscreen) lẫn dạng mới.
+        pattern: /^<iframe( class="short")? src="https:\/\/www\.youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{11})"[^>]*><\/iframe>$/,
         fromBlock: (match) => ({ url: match[1] ? `https://youtube.com/shorts/${match[2]}` : `https://youtu.be/${match[2]}` }),
         toBlock: ({ url }) => ytIframe(youtubeId(url), isShort(url)),
-        toPreview: ({ url }) =>
-          `<iframe src="https://www.youtube-nocookie.com/embed/${youtubeId(url)}" style="width:100%;${isShort(url) ? "max-width:360px;aspect-ratio:9/16" : "aspect-ratio:16/9"};border:0" allowfullscreen></iframe>`,
+        // Khung xem trước trong admin: hiện ảnh bìa thay vì trình phát (trình phát hay lỗi trong khung xem trước).
+        toPreview: ({ url }) => {
+          const id = youtubeId(url);
+          if (!id) return `<p style="color:#b00">Link YouTube chưa đúng.</p>`;
+          const box = isShort(url) ? "max-width:240px;aspect-ratio:9/16" : "aspect-ratio:16/9";
+          return `<a href="https://youtu.be/${id}" target="_blank" rel="noopener" style="display:block;position:relative;width:100%;${box};background:#000 url(https://i.ytimg.com/vi/${id}/hqdefault.jpg) center/cover;border-radius:6px"><span style="position:absolute;inset:auto 0 0 0;padding:8px 12px;background:rgba(0,0,0,.6);color:#fff;font:14px sans-serif">▶ Video YouTube (xem thử trên YouTube)</span></a>`;
+        },
       });
 
       CMS.init();

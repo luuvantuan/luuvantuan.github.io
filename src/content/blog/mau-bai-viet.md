@@ -47,7 +47,7 @@ Video dài thì nên đăng lên YouTube rồi chèn như mục dưới, web s�
 Dán đoạn này, thay `VIDEO_ID` bằng mã video (phần sau `v=` trong link YouTube):
 
 ```html
-<iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Video" allowfullscreen></iframe>
+<iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 ```
 
 ---
