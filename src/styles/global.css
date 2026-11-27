@@ -95,8 +95,25 @@ main { padding: 2rem 0 4rem; }
 .prose h3 { font-size: 1.2rem; margin-top: 2em; }
 .prose a { text-decoration-color: var(--accent); }
 .prose img, .prose video { max-width: 100%; height: auto; border-radius: 6px; display: block; }
-.prose iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 6px; display: block; }
-.prose iframe.short { aspect-ratio: 9 / 16; max-width: 360px; margin-left: auto; margin-right: auto; }
+/* Video YouTube: rộng hơn cột chữ (tối đa 60rem ≈ 960px), luôn nằm giữa màn hình */
+.prose iframe {
+  display: block;
+  width: min(calc(100vw - 2.5rem), 60rem);
+  max-width: none;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: 8px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Shorts (video dọc): cao gần bằng màn hình */
+.prose iframe.short {
+  width: min(calc(100vw - 2.5rem), calc(min(85vh, 760px) * 9 / 16));
+  aspect-ratio: 9 / 16;
+}
+main { overflow-x: clip; }
 .prose blockquote { margin-left: 0; padding-left: 1.25rem; border-left: 3px solid var(--accent); color: var(--muted); font-style: italic; }
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 3rem auto; width: 30%; }
 .prose code { font-size: 0.88em; background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; }
