@@ -5,122 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Quản trị · Lưu Văn Tuấn</title>
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap"
+    />
+    <link rel="stylesheet" href="/admin/admin.css" />
   </head>
   <body>
-    <!-- Sveltia CMS: trang quản trị bài viết. Cấu hình nằm ở admin/config.yml -->
-    <script>
-      // Khởi động thủ công để đăng ký nút "Video" và "YouTube" trước khi trang quản trị chạy.
-      window.CMS_MANUAL_INIT = true;
-    </script>
-    <!-- Cố định phiên bản để trang quản trị không tự đổi khi Sveltia ra bản mới. Muốn nâng cấp: đổi số phiên bản rồi thử lại. -->
-    <script src="https://unpkg.com/@sveltia/cms@5.0.2/dist/sveltia-cms.js"></script>
-    <script>
-      const MB = 1024 * 1024;
-      const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    <!--
+      Trang quản trị blog tự viết (không dùng CMS bên ngoài).
+      Bài viết được lưu thẳng vào GitHub qua GitHub API; mỗi lần lưu, GitHub Actions dựng lại web.
+      Mã nguồn: admin.js (chức năng), admin.css (giao diện), vendor/ (thư viện marked, js-yaml).
+    -->
+    <div id="app"><p class="boot">Đang tải…</p></div>
 
-      // Nút "Video": tải file mp4 từ máy lên public/videos/ rồi chèn vào bài.
-      // Ra đúng dạng blog đang dùng: <video src="/videos/ten.mp4" controls playsinline></video>
-      CMS.registerEditorComponent({
-        id: "video",
-        label: "Video nhỏ (tải lên, dưới 50MB)",
-        icon: "videocam",
-        fields: [
-          {
-            name: "src",
-            label: "File video (mp4, dưới 50MB)",
-            hint: "Video lớn hơn 50MB: đăng lên YouTube (có thể để chế độ Không công khai) rồi dùng nút YouTube.",
-            widget: "file",
-            media_folder: "/public/videos",
-            public_folder: "/videos",
-            accept: "video/mp4,video/webm",
-            max_file_size: 50 * MB,
-            choose_url: false,
-          },
-        ],
-        pattern: /^<video src="([^"]+)" controls playsinline><\/video>$/,
-        fromBlock: (match) => ({ src: match[1] }),
-        toBlock: ({ src }) => `<video src="${esc(src)}" controls playsinline></video>`,
-        toPreview: ({ src }) => `<video src="${esc(src)}" controls playsinline style="max-width:100%"></video>`,
-      });
+    <dialog id="dialog"></dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
 
-      // Nút "YouTube": dán link YouTube (video dài, file lớn), web sẽ nhẹ hơn.
-      const youtubeId = (input) => {
-        const s = String(input ?? "").trim();
-        const m = s.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
-        if (m) return m[1];
-        return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : "";
-      };
-      // Thanh kéo "Kích thước" (custom widget): kéo bằng chuột, từ 30% đến 100%.
-      const h = CMS.React.createElement;
-      const SizeControl = (props) => {
-        const value = Number(props.value) || 100;
-        return h("div", { style: { display: "flex", alignItems: "center", gap: "12px" } },
-          h("input", {
-            id: props.forID,
-            type: "range",
-            min: 30,
-            max: 100,
-            step: 5,
-            value,
-            style: { flex: 1, accentColor: "#9a4a2b", cursor: "pointer" },
-            onInput: (e) => props.onChange(Number(e.target.value)),
-            onChange: (e) => props.onChange(Number(e.target.value)),
-          }),
-          h("strong", { style: { minWidth: "3.5em", textAlign: "right" } }, value + "%"),
-        );
-      };
-      CMS.registerWidget("size-slider", SizeControl);
-
-      // Video thường (ngang 16:9) và Shorts (dọc 9:16) được chèn hơi khác nhau.
-      // referrerpolicy + allow: YouTube cần các thuộc tính này, thiếu sẽ báo "Lỗi 153 / lỗi phát video".
-      const isShort = (input) => /\/shorts\//.test(String(input ?? ""));
-      const clampSize = (n) => Math.min(100, Math.max(30, Math.round(Number(n) || 100)));
-      const YT_ATTRS =
-        'title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen';
-      const ytIframe = (id, short, size) => {
-        const pct = clampSize(size);
-        const style = pct < 100 ? ` style="--size:${pct / 100}"` : "";
-        return `<iframe${short ? ' class="short"' : ""}${style} src="https://www.youtube-nocookie.com/embed/${id}" ${YT_ATTRS}></iframe>`;
-      };
-      CMS.registerEditorComponent({
-        id: "youtube",
-        label: "YouTube",
-        icon: "smart_display",
-        fields: [
-          {
-            name: "url",
-            label: "Link YouTube",
-            widget: "string",
-            hint: "Dán link video hoặc Shorts, ví dụ https://youtu.be/abc123xyz00. Không giới hạn dung lượng: đăng video lên YouTube trước (để Công khai hoặc Không công khai, KHÔNG để Riêng tư), rồi dán link vào đây.",
-          },
-          {
-            name: "size",
-            label: "Kích thước",
-            widget: "size-slider",
-            default: 100,
-            required: false,
-            hint: "Kéo để chỉnh độ to của video trên web. 100% = to nhất (máy tính rộng khoảng 960px, điện thoại rộng hết màn hình).",
-          },
-        ],
-        // Nhận cả dạng cũ (không có kích thước) lẫn dạng mới.
-        pattern: /^<iframe( class="short")?(?: style="--size:([0-9.]+)")? src="https:\/\/www\.youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{11})"[^>]*><\/iframe>$/,
-        fromBlock: (match) => ({
-          url: match[1] ? `https://youtube.com/shorts/${match[3]}` : `https://youtu.be/${match[3]}`,
-          size: match[2] ? clampSize(Number(match[2]) * 100) : 100,
-        }),
-        toBlock: ({ url, size }) => ytIframe(youtubeId(url), isShort(url), size),
-        // Khung xem trước trong admin: hiện ảnh bìa theo đúng tỉ lệ kích thước đã chọn.
-        toPreview: ({ url, size }) => {
-          const id = youtubeId(url);
-          if (!id) return `<p style="color:#b00">Link YouTube chưa đúng.</p>`;
-          const pct = clampSize(size);
-          const box = isShort(url) ? `width:${0.45 * pct}%;aspect-ratio:9/16` : `width:${pct}%;aspect-ratio:16/9`;
-          return `<a href="https://youtu.be/${id}" target="_blank" rel="noopener" style="display:block;position:relative;margin:0 auto;${box};background:#000 url(https://i.ytimg.com/vi/${id}/hqdefault.jpg) center/cover;border-radius:6px"><span style="position:absolute;inset:auto 0 0 0;padding:8px 12px;background:rgba(0,0,0,.6);color:#fff;font:14px sans-serif">▶ Video YouTube · ${pct}%</span></a>`;
-        },
-      });
-
-      CMS.init();
-    </script>
+    <script src="/admin/vendor/marked.min.js"></script>
+    <script src="/admin/vendor/js-yaml.min.js"></script>
+    <script src="/admin/admin.js"></script>
   </body>
 </html>
