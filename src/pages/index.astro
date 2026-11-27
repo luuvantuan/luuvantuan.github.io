@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import PostList from "../components/PostList.astro";
 import TopicList from "../components/TopicList.astro";
-import { SITE } from "../site";
+import { SITE, SHOW } from "../site";
 import { getPosts } from "../utils";
 
 const all = await getPosts();
@@ -25,6 +25,10 @@ const posts = all.slice(0, 8);
     </>
   )}
 
-  <h2 class="section-title">Mình đang viết về</h2>
-  <TopicList posts={all} />
+  {SHOW.topics && (
+    <>
+      <h2 class="section-title">Mình đang viết về</h2>
+      <TopicList posts={all} />
+    </>
+  )}
 </Base>

@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import PostList from "../../components/PostList.astro";
-import { TOPICS } from "../../site";
+import { TOPICS, SHOW } from "../../site";
 import { getPosts, slugify } from "../../utils";
 
 const posts = await getPosts();
@@ -13,10 +13,14 @@ const years = [...new Set(posts.map((p) => p.data.date.getFullYear()))];
     <p>{posts.length > 0 ? `${posts.length} bài, mới nhất ở trên.` : "Những bài đầu tiên đang được viết."}</p>
   </section>
 
-  <h2 class="section-title">Chủ đề</h2>
-  <ul class="tags">
-    {TOPICS.map((t) => <li><a href={`/tag/${slugify(t.name)}/`}>{t.name}</a></li>)}
-  </ul>
+  {SHOW.topics && (
+    <>
+      <h2 class="section-title">Chủ đề</h2>
+      <ul class="tags">
+        {TOPICS.map((t) => <li><a href={`/tag/${slugify(t.name)}/`}>{t.name}</a></li>)}
+      </ul>
+    </>
+  )}
 
   {years.map((year) => (
     <>

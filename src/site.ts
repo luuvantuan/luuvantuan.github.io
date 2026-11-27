@@ -7,6 +7,11 @@ export const SITE = {
   youtube: "https://www.youtube.com/@luuvantuandotcom?sub_confirmation=1",
 };
 
+// Ẩn / hiện các phần của trang.
+// Đang ẩn: trang Giới thiệu và các trang Chủ đề. Muốn hiện lại: đổi thành true,
+// và bỏ dấu "_" ở đầu tên file src/pages/_gioi-thieu.astro, src/pages/tag/_index.astro, src/pages/tag/_[tag].astro.
+export const SHOW = { about: false, topics: false };
+
 // Các chủ đề (tag) của blog. Bài viết chỉ được gắn các tên trong danh sách này.
 // Muốn thêm chủ đề: thêm một dòng mới. Muốn đổi tên: sửa "name" và sửa luôn trong các bài đã dùng.
 export const TOPICS = [

@@ -1,6 +1,7 @@
 ---
 import { render } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import { SHOW } from "../../site";
 import { getPosts, formatDate, readingTime, slugify, type Post } from "../../utils";
 
 export async function getStaticPaths() {
@@ -25,7 +26,7 @@ const minutes = readingTime(post.body);
       </p>
       <h1>{post.data.title}</h1>
       {post.data.description && <p class="lead">{post.data.description}</p>}
-      {post.data.tags.length > 0 && (
+      {SHOW.topics && post.data.tags.length > 0 && (
         <ul class="tags">
           {post.data.tags.map((t) => <li><a href={`/tag/${slugify(t)}/`}>{t}</a></li>)}
         </ul>
