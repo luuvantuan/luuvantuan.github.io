@@ -98,7 +98,8 @@ main { padding: 2rem 0 4rem; }
 /* Video YouTube: rộng hơn cột chữ (tối đa 60rem ≈ 960px), luôn nằm giữa màn hình */
 .prose iframe {
   display: block;
-  width: min(calc(100vw - 2.5rem), 60rem);
+  /* --size (0.3–1) do thanh kéo "Kích thước" trong admin đặt */
+  width: min(calc(100vw - 2.5rem), calc(60rem * var(--size, 1)));
   max-width: none;
   aspect-ratio: 16 / 9;
   height: auto;
@@ -110,7 +111,7 @@ main { padding: 2rem 0 4rem; }
 }
 /* Shorts (video dọc): cao gần bằng màn hình */
 .prose iframe.short {
-  width: min(calc(100vw - 2.5rem), calc(min(85vh, 760px) * 9 / 16));
+  width: min(calc(100vw - 2.5rem), calc(min(85vh, 760px) * 9 / 16 * var(--size, 1)));
   aspect-ratio: 9 / 16;
 }
 main { overflow-x: clip; }
