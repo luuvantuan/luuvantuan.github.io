@@ -2,7 +2,7 @@
 title: "Bộ não thứ hai: cấu trúc của một cuộc sống toàn vẹn"
 description: "Cách mình sắp xếp những gì học được thành hai nhánh, Tự hoàn thiện và Kinh doanh, cùng nền móng từ Tam giáo, Khắc kỷ, Vipassana và Vô vi."
 date: 2026-11-26
-tags: ["Nguyên lý"]
+tags: ["Principles"]
 draft: true
 ---
 

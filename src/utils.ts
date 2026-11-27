@@ -8,7 +8,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export function formatDate(d: Date): string {
-  return d.toLocaleDateString("vi-VN", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" });
+  return d.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Ho_Chi_Minh" });
 }
 
 // "Đời sống" -> "doi-song"

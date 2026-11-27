@@ -21,8 +21,8 @@ const minutes = readingTime(post.body);
   <article>
     <header class="post-header">
       <p class="meta">
-        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time> · {minutes} phút đọc
-        {post.data.draft && " · NHÁP"}
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time> · {minutes} min read
+        {post.data.draft && " · DRAFT"}
       </p>
       <h1>{post.data.title}</h1>
       {post.data.description && <p class="lead">{post.data.description}</p>}
@@ -38,10 +38,10 @@ const minutes = readingTime(post.body);
   </article>
 
   <footer class="post-footer">
-    <a class="meta" href="/blog/">← Tất cả bài viết</a>
-    <nav class="post-nav" aria-label="Bài trước và bài sau">
-      {older && <a href={`/blog/${older.id}/`}><span>Bài trước</span>{older.data.title}</a>}
-      {newer && <a class="next" href={`/blog/${newer.id}/`}><span>Bài sau</span>{newer.data.title}</a>}
+    <a class="meta" href="/blog/">← All posts</a>
+    <nav class="post-nav" aria-label="Previous and next posts">
+      {older && <a href={`/blog/${older.id}/`}><span>Previous</span>{older.data.title}</a>}
+      {newer && <a class="next" href={`/blog/${newer.id}/`}><span>Next</span>{newer.data.title}</a>}
     </nav>
   </footer>
 </Base>

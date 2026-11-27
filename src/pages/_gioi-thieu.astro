@@ -3,33 +3,33 @@ import Base from "../layouts/Base.astro";
 import { SITE, TOPICS } from "../site";
 import { slugify } from "../utils";
 ---
-<Base title="Giới thiệu" description={`Đôi điều về ${SITE.author} và blog này.`}>
+<Base title="About" description={`A little about ${SITE.author} and this blog.`}>
   <article>
     <header class="post-header">
-      <h1>Chào bạn, đây là blog của mình</h1>
-      <p class="lead">Vì sao mình bắt đầu viết, và bạn có thể đọc gì ở đây.</p>
+      <h1>Hi, welcome to my blog</h1>
+      <p class="lead">Why I started writing, and what you can read here.</p>
     </header>
     <div class="prose">
-      <p>Mình là <strong>{SITE.author}</strong>.</p>
+      <p>I am <strong>{SITE.author}</strong>.</p>
       <p>
-        Lâu nay mình chủ yếu làm video. Nhưng có những điều không hợp để nói trước camera: một suy nghĩ
-        chợt đến lúc đi bộ buổi tối, một cuốn sách đọc dở, một ngày bình thường mà mình muốn nhớ lâu hơn.
+        For a long time I mostly made videos. But some things are not meant for the camera: a thought
+        on an evening walk, a half-read book, an ordinary day I want to remember a little longer.
       </p>
-      <p>Blog này là chỗ cho những điều đó.</p>
+      <p>This blog is the place for those things.</p>
 
-      <h2>Bạn sẽ đọc được gì ở đây</h2>
+      <h2>What you will find here</h2>
       <ul>
         {TOPICS.map((t) => (
           <li><a href={`/tag/${slugify(t.name)}/`}>{t.name}</a>: {t.description}</li>
         ))}
       </ul>
 
-      <p>Mình không hứa sẽ viết đều. Nhưng mỗi bài ở đây đều là điều mình thật sự nghĩ.</p>
+      <p>I do not promise to write on a schedule. But every post here is something I truly think.</p>
       <p>
-        Ngoài viết, mình còn làm video trên <a href={SITE.youtube} target="_blank" rel="noopener">kênh YouTube</a>.
-        Nếu muốn nhận bài mới, bạn có thể theo dõi qua <a href="/rss.xml">RSS</a>.
+        Besides writing, I make videos on my <a href={SITE.youtube} target="_blank" rel="noopener">YouTube channel</a>.
+        To get new posts, you can follow along via <a href="/rss.xml">RSS</a>.
       </p>
-      <p>Cảm ơn bạn đã ghé qua.</p>
+      <p>Thanks for stopping by.</p>
     </div>
   </article>
 </Base>

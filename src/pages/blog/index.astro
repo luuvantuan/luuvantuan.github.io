@@ -7,15 +7,15 @@ import { getPosts, slugify } from "../../utils";
 const posts = await getPosts();
 const years = [...new Set(posts.map((p) => p.data.date.getFullYear()))];
 ---
-<Base title="Bài viết" description="Tất cả bài viết trên blog.">
+<Base title="Blog" description="All posts on the blog.">
   <section class="intro">
-    <h1>Bài viết</h1>
-    <p>{posts.length > 0 ? `${posts.length} bài, mới nhất ở trên.` : "Những bài đầu tiên đang được viết."}</p>
+    <h1>Blog</h1>
+    <p>{posts.length > 0 ? `${posts.length} ${posts.length === 1 ? "post" : "posts"}, newest first.` : "The first posts are on their way."}</p>
   </section>
 
   {SHOW.topics && (
     <>
-      <h2 class="section-title">Chủ đề</h2>
+      <h2 class="section-title">Topics</h2>
       <ul class="tags">
         {TOPICS.map((t) => <li><a href={`/tag/${slugify(t.name)}/`}>{t.name}</a></li>)}
       </ul>

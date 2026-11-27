@@ -1,9 +1,9 @@
-// Thông tin chung của blog. Sửa ở đây là đổi trên toàn trang.
+// Thông tin chung của blog (hiển thị bằng tiếng Anh). Sửa ở đây là đổi trên toàn trang.
 export const SITE = {
   title: "Lưu Văn Tuấn",
-  description: "Ghi chép trên hành trình học ngoại ngữ, kinh doanh, theo đuổi Đông y và rèn luyện cơ thể.",
+  description: "Notes from my journey learning languages, building a business, studying Eastern medicine, and training my body.",
   author: "Lưu Văn Tuấn",
-  lang: "vi",
+  lang: "en",
   youtube: "https://www.youtube.com/@luuvantuandotcom?sub_confirmation=1",
 };
 
@@ -15,12 +15,12 @@ export const SHOW = { about: false, topics: false };
 // Các chủ đề (tag) của blog. Bài viết chỉ được gắn các tên trong danh sách này.
 // Muốn thêm chủ đề: thêm một dòng mới. Muốn đổi tên: sửa "name" và sửa luôn trong các bài đã dùng.
 export const TOPICS = [
-  { name: "Học ngoại ngữ", description: "Cách mình học, tài liệu, và những gì rút ra được." },
-  { name: "Kinh doanh", description: "Bài học từ việc làm ăn, bán hàng, xây dựng thứ của riêng mình." },
-  { name: "Trở thành bác sĩ Đông y", description: "Hành trình học và theo đuổi y học cổ truyền." },
-  { name: "Rèn luyện cơ thể", description: "Tập luyện, ăn uống, giữ sức khỏe mỗi ngày." },
-  { name: "Nguyên lý", description: "Những nguyên lý sống mình tin và cố gắng sống theo." },
-  { name: "Tóm tắt sách", description: "Tóm tắt những cuốn sách mình đọc, kèm điều rút ra để áp dụng." },
+  { name: "Language Learning", description: "How I learn languages, the resources I use, and what I take away." },
+  { name: "Business", description: "Lessons from running a business, selling, and building something of my own." },
+  { name: "Becoming an Eastern Medicine Doctor", description: "My journey studying and practicing traditional Eastern medicine." },
+  { name: "Fitness", description: "Training, eating well, and staying healthy every day." },
+  { name: "Principles", description: "The principles I believe in and try to live by." },
+  { name: "Book Summaries", description: "Summaries of the books I read, with takeaways I can apply." },
 ] as const;
 
 export type TopicName = (typeof TOPICS)[number]["name"];

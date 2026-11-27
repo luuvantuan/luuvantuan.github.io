@@ -2,7 +2,7 @@
 title: "Mẫu bài viết (bài nháp, không hiện trên web thật)"
 description: "Tham khảo cách viết chữ đậm, tiêu đề, ảnh, video YouTube."
 date: 2026-11-25
-tags: ["Học ngoại ngữ"]
+tags: ["Language Learning"]
 draft: true
 ---
 

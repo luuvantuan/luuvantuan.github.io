@@ -2,7 +2,7 @@
 title: "Tập gym cho người mới (phần 2): Kỹ thuật đúng cho 8 bài tập cơ bản"
 description: "Hướng dẫn từng bước squat, đẩy ngực, kéo cáp, plank, Romanian deadlift, đẩy vai, kéo xà máy và lunge, kèm lỗi hay gặp và cách sửa."
 date: 2026-11-26
-tags: ["Rèn luyện cơ thể"]
+tags: ["Fitness"]
 draft: true
 ---
 

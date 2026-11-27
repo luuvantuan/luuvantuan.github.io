@@ -2,7 +2,7 @@
 title: "Hướng dẫn tập gym cho người mới bắt đầu"
 description: "Lịch tập 3 buổi/tuần, 6 bài cơ bản, cách tăng mức tạ, ăn uống và nghỉ ngơi để 3 tháng đầu tập đúng, an toàn và thấy kết quả."
 date: 2026-11-26
-tags: ["Rèn luyện cơ thể"]
+tags: ["Fitness"]
 draft: true
 ---
 

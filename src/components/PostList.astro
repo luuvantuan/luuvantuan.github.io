@@ -5,7 +5,7 @@ interface Props { posts: Post[] }
 const { posts } = Astro.props;
 ---
 {posts.length === 0 ? (
-  <p class="empty">Chưa có bài viết nào.</p>
+  <p class="empty">No posts yet.</p>
 ) : (
   <ul class="post-list">
     {posts.map((post) => (

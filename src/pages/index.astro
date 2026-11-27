@@ -13,22 +13,22 @@ const posts = all.slice(0, 8);
     {/* Tiêu đề ẩn: không hiện trên trang nhưng Google và trình đọc màn hình vẫn đọc được */}
     <h1 class="sr-only">{SITE.title}</h1>
     <p>
-      {SITE.description} Thỉnh thoảng mình cũng làm video trên{" "}
+      {SITE.description} I also make videos on{" "}
       <a href={SITE.youtube} target="_blank" rel="noopener">YouTube</a>.
     </p>
   </section>
 
   {posts.length > 0 && (
     <>
-      <h2 class="section-title">Bài viết mới</h2>
+      <h2 class="section-title">Latest posts</h2>
       <PostList posts={posts} />
-      <p class="meta more"><a href="/blog/">Xem tất cả bài viết →</a></p>
+      <p class="meta more"><a href="/blog/">All posts →</a></p>
     </>
   )}
 
   {SHOW.topics && (
     <>
-      <h2 class="section-title">Mình đang viết về</h2>
+      <h2 class="section-title">What I write about</h2>
       <TopicList posts={all} />
     </>
   )}

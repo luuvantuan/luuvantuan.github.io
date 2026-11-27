@@ -6,11 +6,11 @@ import { getPosts } from "../../utils";
 
 const posts = await getPosts();
 ---
-<Base title="Chủ đề" description="Những chủ đề mình đang theo đuổi và viết về.">
+<Base title="Topics" description="The things I am pursuing and writing about.">
   <section class="intro">
-    <h1>Chủ đề</h1>
-    <p>{TOPICS.length} điều mình đang theo đuổi và ghi chép lại.</p>
+    <h1>Topics</h1>
+    <p>{TOPICS.length} things I am pursuing and writing about.</p>
   </section>
-  <h2 class="section-title">Tất cả chủ đề</h2>
+  <h2 class="section-title">All topics</h2>
   <TopicList posts={posts} />
 </Base>
